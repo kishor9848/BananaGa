@@ -1,25 +1,25 @@
-// Importing the Mongoose library
+// Importing the Mongoose library for MongoDB interaction
 const mongoose = require("mongoose");
 
-// Defining an asynchronous function to connect to the MongoDB database
+// Defining an asynchronous function to establish a connection to the MongoDB database
 const connectDB = async () => {
   try {
-    // Attempting to connect to the MongoDB database at the specified URI
+    // Attempting to connect to the MongoDB database using Mongoose
     await mongoose.connect("mongodb://localhost:27017/Banana", {
-      useNewUrlParser: true,  // Ensures MongoDB connection string parsing is done using the new parser
-      useUnifiedTopology: true,  // Enables the new server discovery and monitoring engine
+      useNewUrlParser: true, // Use the new URL string parser for MongoDB connection strings
+      useUnifiedTopology: true, // Enable the new server discovery and monitoring engine
     });
     
-    // Logging a success message upon a successful connection
+    // Log a success message if the connection is established successfully
     console.log("MongoDB connected");
   } catch (error) {
-    // Catching and logging any errors that occur during the connection attempt
+    // Catch and log any error that occurs during the connection attempt
     console.error(error.message);
     
-    // Exiting the process with a failure code
+    // Exit the Node.js process with a failure status code (1) if the connection fails
     process.exit(1);
   }
 };
 
-// Exporting the connectDB function for use in other files
+// Exporting the `connectDB` function so it can be used in other parts of the application
 module.exports = connectDB;
